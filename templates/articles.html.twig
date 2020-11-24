@@ -8,11 +8,9 @@
 
     {% for article in articles %}
 
-            <h2>{{ article.title }}</h2>
-
-            <p>{{ article.content }}</p>
-
-            <img src="{{ article.image }}" alt="">
+{#je lis mon lien à ma page article via la fonction path() de twig, ainsi je le nomme par son nom plutot que par
+ledit chemin + je peux donner la valeur article.id à l'élément id que j'ai précisé comme variable (WILDCARD) dans mon PagesController#}
+        <h2><a href="{{ path('show_article', {id: article.id}) }}">{{ article.title }}</a></h2>
 
     {% endfor %}
 

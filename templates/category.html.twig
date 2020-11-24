@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ category.title }} {%  endblock title %}
+
+{% block body  %}
+
+    <h1 style="color: {{ category.color }}">{{ category.title }} </h1>
+
+{#Si l'on veut insérer une date provenant de la BDD, il faut d'abord la formater en string, sinon c'est un objet que renvoie
+la BDD, d'où l'extension twig "daet()" #}
+    <p>{{ category.publicationDate|date('d/m/Y') }}</p>
+
+    <a href="{{ path("list_categories") }}">Retour</a>
+
+
+{% endblock body %}

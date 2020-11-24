@@ -20,7 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d486fc-bd4e-4a5f-9a9c-5bf609f087c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/article.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/category.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PagesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/articles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articles.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/categories.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categories.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +169,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606142804766</updated>
       <workItem from="1606142805947" duration="3510000" />
-      <workItem from="1606208613104" duration="4342000" />
+      <workItem from="1606208613104" duration="7608000" />
     </task>
     <servers />
   </component>
@@ -188,7 +192,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/templates/articles.html.twig</url>
-          <line>18</line>
+          <line>16</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
