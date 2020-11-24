@@ -30,17 +30,17 @@ class Category
     /**
      * @ORM\Column(type="date")
      */
-    private $date_de_publication;
+    private $publicationDate;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $date_de_creation;
+    private $creationDate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $est_publie;
+    private $isPublished;
 
     public function getId(): ?int
     {
@@ -71,38 +71,38 @@ class Category
         return $this;
     }
 
-    public function getDateDePublication(): ?\DateTimeInterface
+    public function getPublicationDate(): ?\DateTimeInterface
     {
-        return $this->date_de_publication;
+        return $this->publicationDate;
     }
 
-    public function setDateDePublication(\DateTimeInterface $date_de_publication): self
+    public function setPublicationDate(\DateTimeInterface $publicationDate): self
     {
-        $this->date_de_publication = $date_de_publication;
+        $this->publicationDate = $publicationDate;
 
         return $this;
     }
 
-    public function getDateDeCreation(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeInterface
     {
-        return $this->date_de_creation;
+        return $this->creationDate;
     }
 
-    public function setDateDeCreation(\DateTimeInterface $date_de_creation): self
+    public function setCreationDate(\DateTimeInterface $creationDate): self
     {
-        $this->date_de_creation = $date_de_creation;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
-    public function getEstPublie(): ?bool
+    public function getIsPublished(): ?bool
     {
-        return $this->est_publie;
+        return $this->isPublished;
     }
 
-    public function setEstPublie(bool $est_publie): self
+    public function setIsPublished(bool $isPublished): self
     {
-        $this->est_publie = $est_publie;
+        $this->isPublished = $isPublished;
 
         return $this;
     }
