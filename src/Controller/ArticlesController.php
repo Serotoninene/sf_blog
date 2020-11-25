@@ -94,4 +94,25 @@ class ArticlesController extends AbstractController
     }
 
 
+    /**
+     * Je pose une WILDCARD dans ma route, c'est elle qui va déterminer l'article que l'on va modifier
+     * + j'AUTOWIRE ArticleRepository pour faire appel à ma table Article dans ma BDD (et ainsi la modifier - partiellement -)
+     * + j'AUTOWIRE EntityManager pour envoyer ces même changements à la BDD
+     * + je mets également en PARAMETRE l'id que je récupère du lien pour pouvoir la réutiliser dans le code php :)
+     *
+     * @Route ("/articles/update/{id}", name="update_article_static")
+     */
+    public function articleStaticUpdate(ArticleRepository $articleRepository, EntityManagerInterface $entityManager, $id){
+
+        $article = $articleRepository->find($id);
+
+        $article->setTitle("OMG IL A CLIQUÉ LE CON");
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("list_articles");
+
+    }
+
+
 }
