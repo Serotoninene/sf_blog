@@ -115,4 +115,32 @@ class ArticlesController extends AbstractController
     }
 
 
+    /**
+     * Pour delete un article, le fonctionnement est globalement le même que pour l'update, je trouve d'abord mon article a supp
+     * via articleRepository et ma wildcard que je sors du lien cliqué dans la page twig "articles"
+     *
+     * @Route("/articles/remove/{id}", name="remove_article")
+     */
+    public function articleDelete(ArticleRepository $articleRepository, EntityManagerInterface $entityManager, $id){
+
+        $article = $articleRepository->find($id);
+
+        /**
+         * je dois ouvrir une boucle if pour éviter un message d'erreur si j'essaie d'effacer un article qui existe déjà
+         * (donc je vérifie just que l'article n'est pas null)
+         */
+        if (isset($article)){
+            $entityManager->remove($article);
+
+            /**
+             * et pas besoin de la fonction persist() dans ce cas
+             */
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute("list_articles");
+
+    }
+
+
 }
