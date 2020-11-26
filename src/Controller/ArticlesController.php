@@ -133,6 +133,14 @@ class ArticlesController extends AbstractController
             $entityManager->remove($article);
 
             /**
+             * la méthode addFlash d'AbstractController permet de générer des messages temporaires, on précise le type
+             * et le contenu du message afin de pouvoir trier plus tard lesdits messages en fonction de leur type.
+             *
+             * Il faut ensuite les générer dans le code twig de la page vers laquelle on va rediriger ou mieux, dans
+             * celui de la base.html.twig
+             */
+            $this->addFlash("notice", "Success !");
+            /**
              * et pas besoin de la fonction persist() dans ce cas
              */
             $entityManager->flush();

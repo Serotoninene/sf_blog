@@ -8,6 +8,20 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+
+{#Au cas où il y aurait plusieurs messages flashs, on fait une boucle (meme s'il n'y en a qu'un) pour les appeler
+ci-dessous je boucle dans les messages flashs de tout type mais je pourrai choisir de sélectionner un type précis (ex: error)
+que je veux displayer (cf.symfony.com)
+
+On peut également modifier le code CSS/HTML pour faire du message une popup et non un div dégueu comme c'est ici le cas#}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %} {% endblock body %}
     </body>
 </html>
