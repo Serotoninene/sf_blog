@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Form;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -62,7 +62,7 @@ class ArticlesController extends AbstractController
     /**
      * AUTOWIRE EntityManagerInterface
      *
-     * @Route ("/articles/insert", name = "insert_static")
+     * @Route ("/articles/insertstatic", name = "insert_static")
      */
     public function insertStaticArticle(EntityManagerInterface $entityManager){
 
@@ -93,6 +93,28 @@ class ArticlesController extends AbstractController
 
     }
 
+    /**
+     * Pour créer un formulaire, il suffit d'abord d'en créer un gabarit (ie. un template) qui va s'appuyer sur l'entitée
+     * que l'on a déjà créé pour faire la table Article de la base de donnée
+     * => on utilise la command ine "bin/console make:form" et cela crée automatiquement le gabarit dans un dossier src/Form
+     *
+     * @Route("/articles/insert" , name = "insert_article")
+     */
+    public function insertArticle(){
+
+// On insère le gabarit créé dans une variable, mais elle est encore illisible par du twig, c'est encore du code php trop brut
+        $form = $this->createForm(Form\ArticleType::class);
+
+// Du coup via la fonction createView(), on la rend décriptable dans du twig
+        $formView = $form->createView();
+
+// Il ne reste plus qu'à passer la variable au fichier twig, pour qu'il puisse la traiter.
+        return $this->render("articleInsert.html.twig",[
+            "formview" => $formView
+        ]);
+
+
+    }
 
     /**
      * Je pose une WILDCARD dans ma route, c'est elle qui va déterminer l'article que l'on va modifier
