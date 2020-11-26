@@ -8,6 +8,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
@@ -100,10 +101,23 @@ class ArticlesController extends AbstractController
      *
      * @Route("/articles/insert" , name = "insert_article")
      */
-    public function insertArticle(){
+    public function insertArticle(Request $request, EntityManagerInterface $entityManager){
 
-// On insère le gabarit créé dans une variable, mais elle est encore illisible par du twig, c'est encore du code php trop brut
-        $form = $this->createForm(Form\ArticleType::class);
+// On crée une nouvelle instance dans l'entitée(php)/la table(mysql) Article
+        $article = new Article();
+/* On insère le gabarit créé dans une variable, mais elle est encore illisible par du twig, c'est encore du code php trop brut
+ On y insère également la variable $article pour lier le form à la variable */
+        $form = $this->createForm(Form\ArticleType::class, $article);
+
+/* avec handleRequest, on appelle tout le contenu POST rentré et enregistré dans la variable $request (entrée en AUTOWIRE en amont) */
+        $form->handleRequest($request);
+
+// Vérification que le form est rempli + valide
+        if($form-> isSubmitted() && $form->isValid()){
+//  Si oui on persist et on flush pour ajouter à la BDD
+            $entityManager->persist($article);
+            $entityManager->flush();
+        }
 
 // Du coup via la fonction createView(), on la rend décriptable dans du twig
         $formView = $form->createView();

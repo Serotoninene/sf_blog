@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,6 +19,8 @@ class ArticleType extends AbstractType
             ->add('publicationDate')
             ->add('creationDate')
             ->add('isPublished')
+//            RAJOUT D'UN BOUTON SUBMIT (INDIQUÉ PAR SA CLASSE A PRÉCISER CAR ON LE CREE MANUELLEMENT)
+            ->add('submit', SubmitType::class)
         ;
     }
 
