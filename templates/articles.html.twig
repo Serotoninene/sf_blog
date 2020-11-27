@@ -15,5 +15,8 @@ ledit chemin + je peux donner la valeur article.id à l'élément id que j'ai pr
         <a href="{{ path('remove_article', {id: article.id}) }}"> DELETE L'ARTICLE CI-DESSUS</a>
 
     {% endfor %}
+    <br>
+    <br>
+    <a href="{{ path('insert_article') }}">RAJOUTER UN ARTICLE</a>
 
 {% endblock body %}

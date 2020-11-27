@@ -6,7 +6,6 @@ use App\Form;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,40 +60,6 @@ class ArticlesController extends AbstractController
 
 
     /**
-     * AUTOWIRE EntityManagerInterface
-     *
-     * @Route ("/articles/insertstatic", name = "insert_static")
-     */
-    public function insertStaticArticle(EntityManagerInterface $entityManager){
-
-        /**
-         * je fais appel à mon entity Article (pas oublier de creer un nouveau use pour elle) et j'en crée une nouvelle
-         * instance
-         */
-        $article = new Article();
-
-        /**
-         * Je construis chaque propriétés de l'entitée en utilisant ses setters
-         */
-        $article->setTitle('Le bon roi Dagobert');
-        $article->setContent('a mis sa culotte à l\'envers');
-        $article->setImage("https://static.teteamodeler.com/media/cache/thumb_400/le-bon-roi-dagobert-la-chanson-en-video.png");
-        $article->setCreationDate(new \DateTime());
-        $article->setPublicationDate(new \DateTime());
-        $article->setIsPublished(true);
-
-        /**
-         * C'est via EntityManager que je fais le transfert vers la BDD, d'abord j'enregistre mes ajouts avec sa méthode
-         * persist() et ensuite j'envoie tout avec flush() - fonctionnement similaire à git
-         */
-        $entityManager->persist($article);
-        $entityManager->flush();
-
-        return $this->redirectToRoute("list_articles");
-
-    }
-
-    /**
      * Pour créer un formulaire, il suffit d'abord d'en créer un gabarit (ie. un template) qui va s'appuyer sur l'entitée
      * que l'on a déjà créé pour faire la table Article de la base de donnée
      * => on utilise la command ine "bin/console make:form" et cela crée automatiquement le gabarit dans un dossier src/Form
@@ -103,27 +68,31 @@ class ArticlesController extends AbstractController
      */
     public function insertArticle(Request $request, EntityManagerInterface $entityManager){
 
-// On crée une nouvelle instance dans l'entitée(php)/la table(mysql) Article
+        // On crée une nouvelle instance dans l'entitée(php)/la table(mysql) Article
         $article = new Article();
-/* On insère le gabarit créé dans une variable, mais elle est encore illisible par du twig, c'est encore du code php trop brut
- On y insère également la variable $article pour lier le form à la variable */
+        /* On insère le gabarit créé dans une variable, mais elle est encore illisible par du twig, c'est encore du code php trop brut
+        On y insère également la variable $article pour lier le form à la variable */
         $form = $this->createForm(Form\ArticleType::class, $article);
 
-/* avec handleRequest, on appelle tout le contenu POST rentré et enregistré dans la variable $request (entrée en AUTOWIRE en amont) */
+        /* avec handleRequest, on appelle tout le contenu POST rentré et enregistré dans la variable $request (entrée en AUTOWIRE en amont) */
         $form->handleRequest($request);
 
-// Vérification que le form est rempli + valide
+        // Vérification que le form est rempli + valide
         if($form-> isSubmitted() && $form->isValid()){
-//  Si oui on persist et on flush pour ajouter à la BDD
+        //  Si oui on persist et on flush pour ajouter à la BDD
             $entityManager->persist($article);
             $entityManager->flush();
+
+            $this->addFlash('notice', 'Article créé :)');
+
+            return $this->redirectToRoute('list_articles');
         }
 
-// Du coup via la fonction createView(), on la rend décriptable dans du twig
+        // Du coup via la fonction createView(), on la rend décriptable dans du twig
         $formView = $form->createView();
 
-// Il ne reste plus qu'à passer la variable au fichier twig, pour qu'il puisse la traiter.
-        return $this->render("articleInsert.html.twig",[
+        // Il ne reste plus qu'à passer la variable au fichier twig, pour qu'il puisse la traiter.
+        return $this->render("form.html.twig",[
             "formview" => $formView
         ]);
 
@@ -131,25 +100,41 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * Je pose une WILDCARD dans ma route, c'est elle qui va déterminer l'article que l'on va modifier
+     *  * Je pose une WILDCARD dans ma route, c'est elle qui va déterminer l'article que l'on va modifier
      * + j'AUTOWIRE ArticleRepository pour faire appel à ma table Article dans ma BDD (et ainsi la modifier - partiellement -)
      * + j'AUTOWIRE EntityManager pour envoyer ces même changements à la BDD
      * + je mets également en PARAMETRE l'id que je récupère du lien pour pouvoir la réutiliser dans le code php :)
      *
-     * @Route ("/articles/update/{id}", name="update_article_static")
+     *
+     * @Route("/articles/update/{id}", name= "update_article")
      */
-    public function articleStaticUpdate(ArticleRepository $articleRepository, EntityManagerInterface $entityManager, $id){
+    public function updateArticle (ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request, $id){
+        //Je vais chercher l'article que je veux modifier dans la BDD
+       $article = $articleRepository->find($id);
+        //J'insère ses données dans de le form
+       $form = $this->createForm(Form\ArticleType::class, $article);
 
-        $article = $articleRepository->find($id);
+        // avec handleRequest, on appelle tout le contenu POST rentré et enregistré dans la variable $request (entrée en AUTOWIRE en amont)
+        $form->handleRequest($request);
 
-        $article->setTitle("OMG IL A CLIQUÉ LE CON");
+       if($form->isSubmitted() && $form->isValid()){
         $entityManager->persist($article);
         $entityManager->flush();
 
+        $this->addFlash('notice', 'Article mis à jour :)');
         return $this->redirectToRoute("list_articles");
 
-    }
+       }
 
+        $formView = $form->createView();
+
+        return $this->render('form.html.twig',[
+            'formview' => $formView
+        ]);
+
+
+
+    }
 
     /**
      * Pour delete un article, le fonctionnement est globalement le même que pour l'update, je trouve d'abord mon article a supp
@@ -175,7 +160,7 @@ class ArticlesController extends AbstractController
              * Il faut ensuite les générer dans le code twig de la page vers laquelle on va rediriger ou mieux, dans
              * celui de la base.html.twig
              */
-            $this->addFlash("notice", "Success !");
+            $this->addFlash("notice", "Article supprimé !");
             /**
              * et pas besoin de la fonction persist() dans ce cas
              */

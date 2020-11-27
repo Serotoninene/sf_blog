@@ -14,7 +14,7 @@
     la BDD, d'où l'extension twig "daet()" #}
     <p>{{ article.publicationDate|date('d/m/Y') }}</p>
 
-    <a href="{{ path("update_article_static", {id: article.id})}}">DON'T CLICK</a>
+    <a href="{{ path("update_article", {id: article.id})}}">Modifier l'article</a>
     
     <a href="{{ path("list_articles") }}">Retour</a>
 
