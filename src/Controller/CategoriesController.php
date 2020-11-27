@@ -18,7 +18,7 @@ class CategoriesController extends AbstractController{
 
             $categories = $categoryRepository->findAll();
 
-            return $this->render('categories.html.twig',[
+            return $this->render('front/categories.html.twig',[
                 'categories' => $categories
             ]);
 
@@ -30,7 +30,7 @@ class CategoriesController extends AbstractController{
         public function showCategory($id, CategoryRepository $categoryRepository){
 
             $category = $categoryRepository->find($id);
-            return $this->render("category.html.twig",
+            return $this->render("front/category.html.twig",
                 [
                     'category' => $category
                 ]);

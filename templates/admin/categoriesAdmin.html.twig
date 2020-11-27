@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Categories {%  endblock title %}
+
+{% block body  %}
+    <h1>Categories</h1>
+
+    {% for category in categories %}
+
+        {#je lis mon lien à ma page article via la fonction path() de twig, ainsi je le nomme par son nom plutot que par
+ledit chemin + je peux donner la valeur article.id à l'élément id que j'ai précisé comme variable (WILDCARD) dans mon PagesController#}
+        <h2 style="color: {{ category.color }}"><a href="{{ path('admin_show_category', {id: category.id}) }}">{{ category.title }}</a>  </h2>
+
+        <a href="{{ path('admin_delete_category', {id: category.id}) }}"> supprimer l'article</a>
+        <a href="{{ path('admin_update_category', {id: category.id}) }}"> modifier l'article</a>
+        
+    {% endfor%}
+
+    <a href="{{ path('admin_insert_category') }}"> CREER NOUVELLE CATÉGORIE </a>
+
+{% endblock body %}

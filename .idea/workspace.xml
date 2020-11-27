@@ -20,18 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d486fc-bd4e-4a5f-9a9c-5bf609f087c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/articleAdmin.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/articlesAdmin.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/public/base.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Assets/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminCategoriesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/categoriesAdmin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/categoryAdmin.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/public/article.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/articles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/public/articles.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/categories.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/public/categories.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/category.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/public/category.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/form.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +160,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/templates/admin" />
       <recent name="$PROJECT_DIR$/templates/public" />
     </key>
@@ -184,7 +181,7 @@
       <workItem from="1606208613104" duration="8070000" />
       <workItem from="1606293758541" duration="8341000" />
       <workItem from="1606381981445" duration="1825000" />
-      <workItem from="1606384269453" duration="9758000" />
+      <workItem from="1606384269453" duration="18654000" />
     </task>
     <servers />
   </component>
@@ -204,16 +201,24 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606475338470">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1606475338470" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1606384512211">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1606384512211" />
+    <state x="406" y="141" width="652" height="640" key="find.popup" timestamp="1606487783041">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="406" y="141" width="652" height="640" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1606487783041" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/templates/public/articles.html.twig</url>
+          <url>file://$PROJECT_DIR$/templates/front/articles.html.twig</url>
           <line>21</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
