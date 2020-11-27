@@ -12,12 +12,49 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminArticlesController extends AbstractController
 {
+
+    /**
+     * @Route("/admin/articles", name="admin_list_articles")
+     *
+     * On rajoute la classe ArticleRepository directement dans la ligne de la fonction et on la sauvegarde dans une
+     * variable --> AUTOWIRE
+     */
+    public function listArticles(ArticleRepository $articleRepository)
+    {
+
+        /**
+         * Grace à ArticleRepository je peux faire des requêtes SELECT SQL et retrouver les éléments désirés dans
+         *ma BDD, en l'occurence je les cherche tous
+         */
+        $articles = $articleRepository->findAll();
+
+        return $this->render('admin/articlesAdmin.html.twig', [
+            'articles' => $articles
+        ]);
+    }
+
+    /**
+     *
+     * @Route ("/admin/articles/show/{id}", name="admin_show_article")
+     */
+    public function showArticle($id, ArticleRepository $articleRepository)
+    {
+
+        $article = $articleRepository->find($id);
+        return $this->render("admin/articleAdmin.html.twig",
+            [
+                'article' => $article
+            ]);
+
+    }
+
+
     /**
      * Pour créer un formulaire, il suffit d'abord d'en créer un gabarit (ie. un template) qui va s'appuyer sur l'entitée
      * que l'on a déjà créé pour faire la table Article de la base de donnée
      * => on utilise la command ine "bin/console make:form" et cela crée automatiquement le gabarit dans un dossier src/Form
      *
-     * @Route("/articles/insert" , name = "insert_article")
+     * @Route("/admin/articles/insert" , name = "admin_insert_article")
      */
     public function insertArticle(Request $request, EntityManagerInterface $entityManager){
 
@@ -38,14 +75,14 @@ class AdminArticlesController extends AbstractController
 
             $this->addFlash('notice', 'Article créé :)');
 
-            return $this->redirectToRoute('list_articles');
+            return $this->redirectToRoute('admin_list_articles');
         }
 
         // Du coup via la fonction createView(), on la rend décriptable dans du twig
         $formView = $form->createView();
 
         // Il ne reste plus qu'à passer la variable au fichier twig, pour qu'il puisse la traiter.
-        return $this->render("form.html.twig",[
+        return $this->render("admin/form.html.twig",[
             "formview" => $formView
         ]);
 
@@ -58,7 +95,7 @@ class AdminArticlesController extends AbstractController
      * + je mets également en PARAMETRE l'id que je récupère du lien pour pouvoir la réutiliser dans le code php :)
      *
      *
-     * @Route("/articles/update/{id}", name= "update_article")
+     * @Route("/admin/articles/update/{id}", name= "admin_update_article")
      */
     public function updateArticle (ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request, $id){
         //Je vais chercher l'article que je veux modifier dans la BDD
@@ -74,13 +111,13 @@ class AdminArticlesController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('notice', 'Article mis à jour :)');
-            return $this->redirectToRoute("list_articles");
+            return $this->redirectToRoute("admin_list_articles");
 
         }
 
         $formView = $form->createView();
 
-        return $this->render('form.html.twig',[
+        return $this->render('admin/form.html.twig',[
             'formview' => $formView
         ]);
 
@@ -90,7 +127,7 @@ class AdminArticlesController extends AbstractController
      * Pour delete un article, le fonctionnement est globalement le même que pour l'update, je trouve d'abord mon article a supp
      * via articleRepository et ma wildcard que je sors du lien cliqué dans la page twig "articles"
      *
-     * @Route("/articles/remove/{id}", name="remove_article")
+     * @Route("/admin/articles/remove/{id}", name="admin_remove_article")
      */
     public function articleDelete(ArticleRepository $articleRepository, EntityManagerInterface $entityManager, $id){
 
@@ -117,7 +154,7 @@ class AdminArticlesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute("list_articles");
+        return $this->redirectToRoute("admin_list_articles");
 
     }
 }

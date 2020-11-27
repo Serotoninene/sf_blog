@@ -1,0 +1,22 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %} {{ article.title }} {% endblock title %}
+
+{% block body %}
+
+    <h1>{{ article.title }}</h1>
+
+    <img src="{{ article.image }}" alt="random image">
+
+    <h3>{{ article.content }}</h3>
+
+    {#Si l'on veut insérer une date provenant de la BDD, il faut d'abord la formater en string, sinon c'est un objet que renvoie
+    la BDD, d'où l'extension twig "daet()" #}
+    <p>{{ article.publicationDate|date('d/m/Y') }}</p>
+
+    <a href="{{ path("admin_update_article", {id: article.id})}}">Modifier l'article</a>
+    <br>
+    <a href="{{ path("admin_list_articles") }}">Retour</a>
+
+{% endblock body %}
+

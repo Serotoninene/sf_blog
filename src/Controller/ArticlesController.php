@@ -8,7 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
 {
-
     /**
      * @Route("/articles", name="list_articles")
      *
@@ -24,11 +23,10 @@ class ArticlesController extends AbstractController
          */
         $articles = $articleRepository->findAll();
 
-        return $this->render('articles.html.twig', [
+        return $this->render('front/articles.html.twig', [
             'articles' => $articles
         ]);
     }
-
 
     /**
      * id est ci-dessous une WILDCARD, ie c'est une variable, dans ce cas modifiée en fonction du lien sur lequel on a cliqué
@@ -39,7 +37,7 @@ class ArticlesController extends AbstractController
     {
 
         $article = $articleRepository->find($id);
-        return $this->render("article.html.twig",
+        return $this->render("front/article.html.twig",
             [
                 'article' => $article
             ]);

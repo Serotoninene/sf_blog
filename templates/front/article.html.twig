@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'front/base.html.twig' %}
 
 {% block title %} {{ article.title }} {% endblock title %}
 
@@ -14,8 +14,6 @@
     la BDD, d'où l'extension twig "daet()" #}
     <p>{{ article.publicationDate|date('d/m/Y') }}</p>
 
-    <a href="{{ path("update_article", {id: article.id})}}">Modifier l'article</a>
-    
     <a href="{{ path("list_articles") }}">Retour</a>
 
 {% endblock body %}

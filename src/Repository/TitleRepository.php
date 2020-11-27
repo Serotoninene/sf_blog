@@ -23,7 +23,7 @@ class TitleRepository extends ServiceEntityRepository
     //  * @return Title[] Returns an array of Title objects
     //  */
     /*
-    public function findByExampleField($value)
+    front function findByExampleField($value)
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
@@ -37,7 +37,7 @@ class TitleRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Title
+    front function findOneBySomeField($value): ?Title
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
