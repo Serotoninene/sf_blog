@@ -67,14 +67,30 @@ class Article
     private $creationDate;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     *
+     * Grace à la ligne de commande "bin/console make:entity" on update l'entitée Article pour ajouter un élément
+     * "category.id" qui va faire le lien entre la table "article" et la table "category"
+     *
+     * Le "ManyToOne" représente la cardinalité qui lie les tables, ici il faut comprendre : "il peut y avoir plsrs
+     * article pour UNE seule categorie
+     * /!\ c'est toujours "ManyToOne" qui sera la table "maitre", à comprendre : que l'on va sélectionner dans le
+     * "make:entity" + dans laquelle sera inséré l'id de la seconde table
+     *
+     * Le premier élément du mapping est la route vers l'entitée "Category" qui indique la table avec laquelle on
+     * désire faire une jointure;
+     *
+     * Le deuxième élément représente le nom de la nouvelle propriété créée dans l'entitée Category (ici "articles")
+     * et le inversedby la relation par rapport à l'entitée Article
+     * => " Pour l'entitée Article, c'est une relation many to one (il peut y avoir MANY articles TO ONE category)
+     * mais pour l'entitée Category c'est L'INVERSE, une relation one to many (ONE category TO MANY articles)
+     */
+    private $category;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $isPublished;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
-     */
-    private $category;
 
     public function getId(): ?int
     {
@@ -153,6 +169,10 @@ class Article
         return $this;
     }
 
+
+    /*
+     * Les getters et setters de la jointure sont identiques aux autres ici, mais pas dans l'entitée Category
+     */
     public function getCategory(): ?Category
     {
         return $this->category;

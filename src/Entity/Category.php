@@ -45,6 +45,17 @@ class Category
     private $isPublished;
 
     /**
+     * Dans la propriété "articles", étant donné qu'il y a PLUSIEURS articles pour une catégory, il faut les stocker
+     * dans un tableau, d'où l'instanciation de la class ArrayCollection() - qui équivaut à un array normal avec
+     * des "super pouvoirs" -
+     * => lorsqu'on associe un article à une category (en lui donnant un category_id dans la bdd), un tableau est créé
+     * et il est automatiquement (l'article) inséré dedans.
+     *
+     * C'est pourquoi il n'y a pas de "setArticles" comme cela devrait être le cas mais un "addArticles"
+     * => si on faisait "setArticle", cela supprimerai le tableau pour le remplacer par un seul nouveau article,
+     * set... n'est bon que s'il n'y a qu'un seul élément dans la propriété; il est ici remplacé par add... qui se contente
+     *d'ajouter au tableau le nouvel élément et permet ainsi d'avoir plusieurs articles par propriété.
+     *
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category")
      */
     private $articles;
