@@ -16,7 +16,7 @@ class CategoryType extends AbstractType
             ->add('title')
             ->add('color')
             ->add('publicationDate')
-            ->add('creationDate')
+            ->add('creationDate', )
             ->add('isPublished')
             ->add('submit', SubmitType::class)
         ;

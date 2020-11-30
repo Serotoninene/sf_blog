@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -19,31 +20,57 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 255,
+     *     minMessage="Le titre est trop court !",
+     *     maxMessage="Le titre est trop looooong !",
+     *     allowEmptyString= false
+     * )
+     *
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotNull (
+     *      message = "Vous n'avez inséré aucun contenu !"
+     * )
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Url(
+     *     message = "Ce n'est pas un URL"
+     * )
+     *
      */
     private $image;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotNull(
+     *     message = " Date de publication a indiquer !"
+     * )
      */
     private $publicationDate;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull(
+     *     message = " Date de créatiion a indiquer !"
+     * )
      */
     private $creationDate;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotNull(
+     *     message = " IsPublished a indiquer !"
+     * )
      */
     private $isPublished;
 
