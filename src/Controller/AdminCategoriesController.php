@@ -21,7 +21,7 @@ class AdminCategoriesController extends AbstractController{
 
         $categories = $categoryRepository->findAll();
 
-        return $this->render('admin/categoriesAdmin.html.twig',[
+        return $this->render('admin/category/categoriesAdmin.html.twig',[
             'categories' => $categories
         ]);
 
@@ -34,7 +34,7 @@ class AdminCategoriesController extends AbstractController{
 
         $category = $categoryRepository->find($id);
 
-        return $this->render("admin/categoryAdmin.html.twig",
+        return $this->render("admin/category/categoryAdmin.html.twig",
             [
                 'category' => $category
             ]);
@@ -63,7 +63,7 @@ class AdminCategoriesController extends AbstractController{
 
         $formview = $form-> createView();
 
-        return $this->render('admin/form.html.twig',[
+        return $this->render('admin/category/categoryForm.html.twig',[
            "formview" => $formview
         ]);
 
@@ -89,7 +89,7 @@ class AdminCategoriesController extends AbstractController{
 
         $formview = $form->createView();
 
-        return $this->render('admin/form.html.twig',[
+        return $this->render('admin/category/categoryForm.html.twig',[
            "formview" => $formview
         ]);
     }

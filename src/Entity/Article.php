@@ -71,6 +71,9 @@ class Article
      *
      * Grace à la ligne de commande "bin/console make:entity" on update l'entitée Article pour ajouter un élément
      * "category.id" qui va faire le lien entre la table "article" et la table "category"
+     * /!\ ne pas oublier qu'après avoir créé une entitée, il faut écrire en command line "make:migration" pour
+     * enregistrer le changement pour "doctrine:migrations:migrate" pour l'envoyer en BDD (fonctionnement identique
+     * à git)
      *
      * Le "ManyToOne" représente la cardinalité qui lie les tables, ici il faut comprendre : "il peut y avoir plsrs
      * article pour UNE seule categorie

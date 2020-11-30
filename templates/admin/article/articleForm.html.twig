@@ -19,17 +19,30 @@ formview made in ArticlesController (envoyée depuis le Controller)#}
     <section id="formulaire" class="d-flex justify-content-center align-items-center mx-5 my-5">
 
         <div>
-            <h1 class="my-5"> Formulaire </h1>
+            <h1 class="my-3"> Formulaire </h1>
 
         {{ form_start(formview) }}
             <div class="d-flex flex-column justify-content-center align-items-center">
 
 
+
                 <div class="form-group">
-                    <div class="label">{{ form_label(formview.title) }}</div>
+
+                <div class="label">{{ form_label(formview.title) }}</div>
                     {{ form_widget(formview.title) }}
                     {{ form_errors(formview.title) }}
                 </div>
+
+                {#Pour aller chercher les catégories il suffit d'appeler formview.category, la majorité du travail a été faite
+                dans le dossier ArticleType qui renvoit seulement les titres des categories et le EntityType permet de créer un
+                menu déroulant#}
+                <div class="label">
+                {{ form_label(formview.category) }}
+                {{ form_widget(formview.category) }}
+                </div>
+
+                </div>
+
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.content) }}</div>
                     {{ form_widget(formview.content) }}
@@ -55,14 +68,14 @@ formview made in ArticlesController (envoyée depuis le Controller)#}
                     {{ form_errors(formview.creationDate) }}
 
                 </div>
-                <div class="form-group">
+                <div class="form-group d-flex flex-column align-items-center">
                     <div class="label">{{ form_label(formview.isPublished) }}</div>
                     {{ form_widget(formview.isPublished) }}
                     {{ form_errors(formview.isPublished) }}
 
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group">
                     {{ form_row(formview.submit, {'attr' : {'class': 'button'}}) }}
 
                 </div>

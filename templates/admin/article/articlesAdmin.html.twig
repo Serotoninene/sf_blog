@@ -11,7 +11,7 @@
         {#je lis mon lien à ma page article via la fonction path() de twig, ainsi je le nomme par son nom plutot que par
 ledit chemin + je peux donner la valeur article.id à l'élément id que j'ai précisé comme variable (WILDCARD) dans mon PagesController#}
         <h2><a href="{{ path('admin_show_article', {id: article.id}) }}">{{ article.title }}</a></h2>
-        <br>
+        <div class="images" ><img src="{{ article.image }}" alt="" class="img-fluid"></div>
         <a href="{{ path('admin_remove_article', {id: article.id}) }}"> DELETE L'ARTICLE CI-DESSUS</a>
 
     {% endfor %}

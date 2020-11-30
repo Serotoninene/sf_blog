@@ -28,7 +28,7 @@ class AdminArticlesController extends AbstractController
          */
         $articles = $articleRepository->findAll();
 
-        return $this->render('admin/articlesAdmin.html.twig', [
+        return $this->render('admin/article/articlesAdmin.html.twig', [
             'articles' => $articles
         ]);
     }
@@ -41,7 +41,7 @@ class AdminArticlesController extends AbstractController
     {
 
         $article = $articleRepository->find($id);
-        return $this->render("admin/articleAdmin.html.twig",
+        return $this->render("admin/article/articleAdmin.html.twig",
             [
                 'article' => $article
             ]);
@@ -82,7 +82,7 @@ class AdminArticlesController extends AbstractController
         $formView = $form->createView();
 
         // Il ne reste plus qu'à passer la variable au fichier twig, pour qu'il puisse la traiter.
-        return $this->render("admin/form.html.twig",[
+        return $this->render("admin/article/articleForm.html.twig",[
             "formview" => $formView
         ]);
 
@@ -117,7 +117,7 @@ class AdminArticlesController extends AbstractController
 
         $formView = $form->createView();
 
-        return $this->render('admin/form.html.twig',[
+        return $this->render('admin/article/articleForm.html.twig',[
             'formview' => $formView
         ]);
 

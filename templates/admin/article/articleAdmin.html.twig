@@ -5,6 +5,7 @@
 {% block body %}
 
     <h1>{{ article.title }}</h1>
+    <h2 style="color:{{ article.category.color }}">{{ article.category.title }}</h2>
 
     <img src="{{ article.image }}" alt="random image">
 
