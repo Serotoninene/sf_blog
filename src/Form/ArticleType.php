@@ -24,6 +24,9 @@ class ArticleType extends AbstractType
 
             là on fait bien référence à la propriété "category" de l'entitée Article, et on précise qu'elle (la propriété)
             fait référence à une autre entitée
+
+            /!\ Ne pas oublier de rajouter la ligne use pour le EntityType et le Category::class !! dans les deux cas il faut préciser le chemin
+            vers les Entitées Article et Category
             */
             ->add('category', EntityType::class, [
 
