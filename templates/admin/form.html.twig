@@ -28,28 +28,38 @@ formview made in ArticlesController (envoyée depuis le Controller)#}
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.title) }}</div>
                     {{ form_widget(formview.title) }}
+                    {{ form_errors(formview.title) }}
                 </div>
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.content) }}</div>
                     {{ form_widget(formview.content) }}
+                    {{ form_errors(formview.content) }}
+
                 </div>
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.image) }}</div>
                     {{ form_widget(formview.image) }}
+                    {{ form_errors(formview.image) }}
+
                 </div>
 
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.publicationDate) }}</div>
                     {{ form_widget(formview.publicationDate) }}
+                    {{ form_errors(formview.publicationDate) }}
+
                 </div>
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.creationDate) }}</div>
-
                     {{ form_widget(formview.creationDate) }}
+                    {{ form_errors(formview.creationDate) }}
+
                 </div>
                 <div class="form-group">
                     <div class="label">{{ form_label(formview.isPublished) }}</div>
                     {{ form_widget(formview.isPublished) }}
+                    {{ form_errors(formview.isPublished) }}
+
                 </div>
 
                 <div class="form-group ">

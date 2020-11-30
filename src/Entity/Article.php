@@ -22,7 +22,7 @@ class Article
      * @ORM\Column(type="string", length=255)
      *
      * @Assert\Length(
-     *     min = 10,
+     *     min = 4,
      *     max = 255,
      *     minMessage="Le titre est trop court !",
      *     maxMessage="Le titre est trop looooong !",
@@ -68,11 +68,13 @@ class Article
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotNull(
-     *     message = " IsPublished a indiquer !"
-     * )
      */
     private $isPublished;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -147,6 +149,18 @@ class Article
     public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
