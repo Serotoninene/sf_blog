@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,14 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('image')
+            ->add('image', FileType::class, [
+                'label' => 'Image',
+                'mapped'=> false,
+                'required'=>false,
+            ])
+
+
+
             /*Pour inclure les catégories dans la création d'un article, il faut mettre un menu déroulant
             dans le form, mais comme à chaque fois que l'on veut modifier le form du CRUD, il faut passer par le dossier Type
             (cf. ajout du bouton submit)

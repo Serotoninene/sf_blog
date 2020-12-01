@@ -7,7 +7,7 @@
     <h1>{{ article.title }}</h1>
     <h2 style="color:{{ article.category.color }}">{{ article.category.title }}</h2>
 
-    <img src="{{ article.image }}" alt="random image">
+    <div class="images" ><img src="{{ asset('uploads_directory/' ~ article.imageFileName) }}" alt="" class="img-fluid"></div>
 
     <h3>{{ article.content }}</h3>
 

@@ -43,12 +43,8 @@ class Article
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
-     * @Assert\Url(
-     *     message = "Ce n'est pas un URL"
-     * )
-     *
      */
-    private $image;
+    private $imageFileName;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -124,14 +120,14 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImageFileName(): ?string
     {
-        return $this->image;
+        return $this->imageFileName;
     }
 
-    public function setImage(?string $image): self
+    public function setImageFileName(?string $imageFileName): self
     {
-        $this->image = $image;
+        $this->imageFileName = $imageFileName;
 
         return $this;
     }

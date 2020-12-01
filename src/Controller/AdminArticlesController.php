@@ -6,7 +6,9 @@ use App\Form;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -56,10 +58,12 @@ class AdminArticlesController extends AbstractController
      *
      * @Route("/admin/articles/insert" , name = "admin_insert_article")
      */
-    public function insertArticle(Request $request, EntityManagerInterface $entityManager){
+    public function insertArticle(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger){
 
         // On crée une nouvelle instance dans l'entitée(php)/la table(mysql) Article
         $article = new Article();
+
+
         /* On insère le gabarit créé dans une variable, mais elle est encore illisible par du twig, c'est encore du code php trop brut
         On y insère également la variable $article pour lier le form à la variable */
         $form = $this->createForm(Form\ArticleType::class, $article);
@@ -69,6 +73,31 @@ class AdminArticlesController extends AbstractController
 
         // Vérification que le form est rempli + valide
         if($form-> isSubmitted() && $form->isValid()){
+
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile){
+                $originalImageName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeImageName = $slugger->slug($originalImageName);
+                $newImageName = $safeImageName.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageFile->move(
+                        $this->getParameter('uploads_directory'),
+                        $newImageName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $article->setImageFileName($newImageName);
+            }
+
+
             //  Si oui on persist et on flush pour ajouter à la BDD
             $entityManager->persist($article);
             $entityManager->flush();
