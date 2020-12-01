@@ -20,18 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d486fc-bd4e-4a5f-9a9c-5bf609f087c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/category/categoryForm.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/security/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminCategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminCategoriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/articleAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/article/articleAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/articlesAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/article/articlesAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/categoriesAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/categoriesAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/categoryAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/categoryAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/article/articleForm.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/article.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/article.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/article/articleForm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/article/articleForm.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,14 +144,18 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1khBAymiv0BYEg5moPT9Sdq45pD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/security" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -171,6 +169,7 @@
       <recent name="$PROJECT_DIR$/templates/public" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/security" />
       <recent name="$PROJECT_DIR$/templates/public" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -187,7 +186,7 @@
       <workItem from="1606208613104" duration="8070000" />
       <workItem from="1606293758541" duration="8341000" />
       <workItem from="1606381981445" duration="1825000" />
-      <workItem from="1606384269453" duration="32502000" />
+      <workItem from="1606384269453" duration="36252000" />
     </task>
     <servers />
   </component>
@@ -205,6 +204,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606475338470">
