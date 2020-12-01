@@ -10,20 +10,28 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
+     * En lançant la command line "bin/console make:auth" cela crée automatiquement les routes login et logout, qui servent
+     * évidemment à accéder au "role" auquel un user à accès (défini dans la bdd et dans security.yaml)
+     *
+     * cela crée également des templates twig que l'on peut modifier dans le fichier templates/security
+     *
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        #redirige vers la page des articles admin si l'user est reconnu
+         if ($this->getUser()) {
+             return $this->redirectToRoute('admin_update_article');
+         }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername, 'error' => $error
+        ]);
     }
 
     /**

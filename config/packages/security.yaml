@@ -3,13 +3,17 @@ security:
         App\Entity\User:
             algorithm: auto
 
+
+#Pour créer le fichier SECURITY.YAML il faut utiliser la command line "bin/console make:user" qui crée une entitée User
+#et définit différents "roles" d'user (admin, customer,...), on décide des accès des différents roles ici (ci-dessous)
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: 'email'
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -24,7 +28,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: 'list_articles'
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -35,5 +39,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        # Ici j'indique que pour accéder à tous les paths commençant par "/admin" il faut avoir le role admin
+        # /!\ il faut IMPÉRATIVEMENT faire matcher ce qu'on écrit ci-dessous dans "roles" avec ce qu'on écrit dans la bdd
+        # + pour la partie role, la bdd attend un objet .json, la synthèxe est donc la suivante : ["ROLE_ADMIN"] (ne pas oublier les crochets+guillemets)
          - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
