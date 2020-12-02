@@ -21,6 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="14d486fc-bd4e-4a5f-9a9c-5bf609f087c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminArticlesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +184,8 @@
       <workItem from="1606208613104" duration="8070000" />
       <workItem from="1606293758541" duration="8341000" />
       <workItem from="1606381981445" duration="1825000" />
-      <workItem from="1606384269453" duration="44196000" />
+      <workItem from="1606384269453" duration="45026000" />
+      <workItem from="1606923895081" duration="985000" />
     </task>
     <servers />
   </component>
@@ -212,6 +216,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1606475338470" />
+    <state x="543" y="392" key="NewPhpFileDialog" timestamp="1606835345209">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="543" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1606835345209" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1606745708327">
       <screen x="0" y="23" width="1440" height="877" />
     </state>

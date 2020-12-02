@@ -74,17 +74,27 @@ class AdminArticlesController extends AbstractController
         // Vérification que le form est rempli + valide
         if($form-> isSubmitted() && $form->isValid()){
 
+            // POUR ENVOYER UN FICHIER IMAGE : on récupère le fichier image avec la fonction get (qui fait référence à 'image'
+            //le nom de la propriété du form builder dans ArticleType
             $imageFile = $form->get('image')->getData();
 
             if ($imageFile){
+                //je récupère le nom du fichier image
                 $originalImageName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
+                // avec la methode slug de la class slugger (ne pas oublier de l'instancier en autowire) on chope le nom
+                //en enlevant tous les caractères spéciaux et accents (/"-][ )
                 $safeImageName = $slugger->slug($originalImageName);
+
+                // on recrée un nom clean (la ligne ci-dessous ajoute juste l'extension après le nom
                 $newImageName = $safeImageName.'-'.uniqid().'.'.$imageFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
+
+                // Move the file to the directory where images are stored
                 try {
                     $imageFile->move(
+                        // /!\ HYPER IMPORTANT : modifier le fichier service.yaml pour déterminer le paramètre du fichier
+                        // cible, faire attention à l'indentation chez les YAML !!!
                         $this->getParameter('uploads_directory'),
                         $newImageName
                     );

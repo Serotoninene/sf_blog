@@ -19,6 +19,19 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('image', FileType::class, [
+
+                /**
+                 * Pour enregistrer une image, il vaut mieux indiquer qu'on n'enregistre que le nom de ladite image dans
+                 * la BDD pour par la suite l'utiliser pour aller la chercher dans un dossier précis.
+                 *
+                 * Dans le formulaire d'insertion de l'article, on indique avec FileType::class que l'on veut non pas une
+                 * string ou un integer mais bien un fichier (ici une image)
+                 *
+                 * on indique le nom du label, on indique si c'est obligatoire ou non avec required mais
+                 * SOURTOUT on indique avec "'mapped' => false" que symfony ne doit pas mapper automatiquement le transfert
+                 * des données mais que c'est nous qui allons devoir gérer tout ça dans le ArticleController (let's go !!)
+                 *
+                 */
                 'label' => 'Image',
                 'mapped'=> false,
                 'required'=>false,
