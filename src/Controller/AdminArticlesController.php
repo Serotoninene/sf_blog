@@ -75,7 +75,7 @@ class AdminArticlesController extends AbstractController
         if($form-> isSubmitted() && $form->isValid()){
 
             // POUR ENVOYER UN FICHIER IMAGE : on récupère le fichier image avec la fonction get (qui fait référence à 'image'
-            //le nom de la propriété du form builder dans ArticleType
+            //le nom Sde la propriété du form builder dans ArticleType
             $imageFile = $form->get('image')->getData();
 
             if ($imageFile){
